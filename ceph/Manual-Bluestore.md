@@ -17,7 +17,7 @@ A Bluestore OSD uses several storage components:
 * `block.db`: The RocksDB. Again no idea for a reasonable size, so 4GB it is. *
 * `block`: The actual block storage for your objects and data. Have a 8TB disk here.
 
-\*) A nice person from the _ceph-users_ mailing list had 1000MB for WAL and 600MB for DB, so I split my 12GB volume into 1/3 and 2/3.
+\*) A nice person from the _ceph-users_ mailing list had 1000MB for DB and 600MB for WAL, so I split my 12GB volume into 1/3 and 2/3.
 
 ## Prepare the block devices
 
