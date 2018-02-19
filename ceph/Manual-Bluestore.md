@@ -70,7 +70,7 @@ This creates all the metadata files, "formats" the block devices, and also gener
 
 Now import the new key into your ceph keystore:
 
-    ceph auth add osd.0 osd 'allow *' mon 'allow rwx' -i /var/lib/ceph/osd/ceph-0/keyring
+    ceph auth add osd.0 osd 'allow *' mon 'allow rwx' mgr 'allow profile osd' -i /var/lib/ceph/osd/ceph-0/keyring
 
 Also insert the new OSD into your CRUSH map, so that it is actually being used.
 Although you surely know your CRUSH map if you are reading this, here is an example:
