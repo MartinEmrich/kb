@@ -47,7 +47,20 @@ In there, create:
 * A symlink named `block.wal` to your WAL block device
 * A symlink named `block.db` to your RocksDB device
 
-Now make sure that **everything** is owned by the *ceph* user, including the block devices themselves (not just the symlinks). Also massage your OS to restore these permissions after reboot!
+Now make sure that **everything** is owned by the *ceph* user, including the block devices themselves (not just the symlinks). 
+Add an udev rule (in `/etc/udev/rules.d`) like:
+
+```
+KERNEL=="sda*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", OWNER="ceph", GROUP="ceph", MODE="0660"
+KERNEL=="sdb*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", OWNER="ceph", GROUP="ceph", MODE="0660"
+KERNEL=="sdc*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", OWNER="ceph", GROUP="ceph", MODE="0660"
+KERNEL=="sdd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", OWNER="ceph", GROUP="ceph", MODE="0660"
+KERNEL=="sde*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", OWNER="ceph", GROUP="ceph", MODE="0660"
+KERNEL=="sdf*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", OWNER="ceph", GROUP="ceph", MODE="0660"
+ENV{DM_LV_NAME}=="osd-*", OWNER="ceph", GROUP="ceph", MODE="0660"
+```
+
+This changes the ownership of the relevant block devices to ceph:ceph after reboot.
 
 This should look similar to this:
 
