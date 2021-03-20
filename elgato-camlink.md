@@ -1,5 +1,5 @@
-Elgato CamLink and Microsoft Teams
-----------------------------------
+Elgato Cam Link 4K and Microsoft Teams
+--------------------------------------
 
 Issues on Linux:
 
